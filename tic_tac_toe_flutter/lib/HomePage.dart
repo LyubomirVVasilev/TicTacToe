@@ -10,6 +10,7 @@ class _HomePageState extends State<HomePage> {
   static AssetImage cross = AssetImage("images/cross.png");
   static AssetImage circle = AssetImage("images/circle.png");
   static AssetImage edit = AssetImage("images/edit.png");
+
   Board board = Board();
   bool hasPlayerSelectedIcon = false;
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  //MARK: Selection of who plays firs helpers
+  //MARK: Selection of who plays first helper
   Column _buildButtonColumn(Color color, AssetImage icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  AssetImage getImage(String value) {
+  AssetImage _getImageFor(String value) {
     switch (value) {
       case (Board.emptyState):
         return edit;
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         child: Image(
-                          image: this.getImage(board.boardState[i]),
+                          image: this._getImageFor(board.boardState[i]),
                         ),
                       ),
                     ),

@@ -9,16 +9,21 @@ class Board {
   static const String crossState = "Cross";
   static const String circleState = "Circle";
 
+  static const String crossPlayerTurnText = "Cross's player turn";
+  static const String circlePlayerTurnText = "Circle's player turn";
+  static const String gameResultDrawText = "The Game is a Draw";
+
+
   makeAMoveAt(int index) {
     if (this.boardState[index] == emptyState) {
-      this.isCross ? this.boardState[index] = crossState :  this.boardState[index] = circleState;
+      this.isCross ? this.boardState[index] = crossState : this.boardState[index] = circleState;
       this.isCross = !this.isCross;
       this.evaluateBoard();
     }
   }
 
   resolveCurrentPlayerText() {
-    this.isCross ? gameStatusMessage = "Cross's player turn" :  gameStatusMessage = "Circle's player turn";
+    this.isCross ? gameStatusMessage = crossPlayerTurnText :  gameStatusMessage = circlePlayerTurnText;
   }
 
   resetGame() {
@@ -66,7 +71,7 @@ class Board {
         return boardState[list[0]];
       } else {
         if (isBoardFull()) {
-          this.gameStatusMessage = 'The Game is Draw';
+          this.gameStatusMessage = gameResultDrawText;
           hasGameFinished = true;
         } else {
           this.resolveCurrentPlayerText();
