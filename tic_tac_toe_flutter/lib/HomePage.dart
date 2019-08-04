@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   //MARK: Layout constants
   static const double _sidePadding = 30;
-  static const homePageStandartInset =
+  static const _homePageStandartInset =
       EdgeInsets.fromLTRB(_sidePadding, 5, _sidePadding, 5);
 
   @override
@@ -26,8 +26,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  //MARK: Selection of action element helpers
-
+  //MARK: Selection of who plays firs helpers
   Column _buildButtonColumn(Color color, AssetImage icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -42,8 +41,8 @@ class _HomePageState extends State<HomePage> {
                 this.board.isCross = false;
               }
               setState(() {
-                this.board.resolveCurrentPlayerText();
                 this.hasPlayerSelectedIcon = true;
+                this.board.resolveCurrentPlayerText();
               });
             },
             child: Image(
@@ -130,7 +129,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            margin: homePageStandartInset,
+            margin: _homePageStandartInset,
             child: Opacity(
               opacity: hasPlayerSelectedIcon ? 0.0 : 1.0,
               child: Container(
@@ -144,8 +143,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         "Pick who plays first:",
                         style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
                           color: Colors.black,
                         ),
                       ),
@@ -160,19 +158,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            margin: homePageStandartInset,
+            padding: _homePageStandartInset,
             child: Text(
-              board.currentPlayerMessage,
-              style: TextStyle(
-                fontSize: 15.0,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ),
-          Container(
-            padding: homePageStandartInset,
-            child: Text(
-              board.gameResultMessage,
+              board.gameStatusMessage,
               style: TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
@@ -180,10 +168,10 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(_sidePadding, 10, _sidePadding, 20),
+            padding: EdgeInsets.fromLTRB(_sidePadding, 20, _sidePadding, _sidePadding),
             child: MaterialButton(
               color: Colors.blueGrey,
-              minWidth: 300.0,
+              minWidth: double.maxFinite,
               height: 40.0,
               child: Text(
                 "Reset Game",
