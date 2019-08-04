@@ -49,7 +49,7 @@ class Board {
     ];
     this.hasGameFinished = false;
     this.gameResultMessage = "";
-    this.resolveCurrentPlayerText();
+    currentPlayerMessage = "";
   }
 
   static const _WIN_CONDITIONS_LIST = [
