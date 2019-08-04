@@ -1,8 +1,8 @@
 class Board {
-
   bool isCross = true;
   String gameResultMessage;
   String currentPlayerMessage;
+  bool hasGameFinished = false;
 
   List<String> boardState;
 
@@ -24,6 +24,10 @@ class Board {
   }
 
   resolveCurrentPlayerText() {
+    if (hasGameFinished) {
+      currentPlayerMessage = "";
+      return;
+    }
     if (this.isCross) {
       currentPlayerMessage = "Cross's player turn";
     } else {
@@ -43,6 +47,7 @@ class Board {
       emptyState,
       emptyState,
     ];
+    this.hasGameFinished = false;
     this.gameResultMessage = "";
     this.resolveCurrentPlayerText();
   }
@@ -69,15 +74,18 @@ class Board {
   String evaluateBoard() {
     for (var list in _WIN_CONDITIONS_LIST) {
       if (boardState[list[0]] !=
-          emptyState && // if a player has played here AND
+              emptyState && // if a player has played here AND
           boardState[list[0]] ==
-              boardState[list[1]] && // if all three positions are of the same player
+              boardState[
+                  list[1]] && // if all three positions are of the same player
           boardState[list[0]] == boardState[list[2]]) {
         this.gameResultMessage = '${boardState[list[0]]} wins';
+        hasGameFinished = true;
         return boardState[list[0]];
       } else {
         if (isBoardFull()) {
           this.gameResultMessage = 'The Game is Draw';
+          hasGameFinished = true;
         }
       }
     }

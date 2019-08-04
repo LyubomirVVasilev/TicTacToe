@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'Board.dart';
 
@@ -46,37 +45,39 @@ class _HomePageState extends State<HomePage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Color(0xFF192A56),
+        backgroundColor: Colors.blueGrey,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.all(15.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1.0,
-                  crossAxisSpacing: 0.0,
-                  mainAxisSpacing: 0.0),
-              itemCount: board.boardState.length,
-              itemBuilder: (context, i) => GridTile(
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueGrey, width: 1.0)),
-                  child: Center(
-                    child: MaterialButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      // makes highlight invisible too
-                      onPressed: () {
-                        setState(() {
-                          board.makeAMoveAt(i);
-                        });
-                      },
-                      child: Image(
-                        image: this.getImage(board.boardState[i]),
+             Expanded(
+             child: Opacity(
+                opacity: board.hasGameFinished ? 0.3 : 1.0,
+              child: GridView.builder(
+                padding: EdgeInsets.all(15.0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1.0,
+                    crossAxisSpacing: 0.0,
+                    mainAxisSpacing: 0.0),
+                itemCount: board.boardState.length,
+                itemBuilder: (context, i) => GridTile(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueGrey, width: 1.0)),
+                    child: Center(
+                      child: MaterialButton(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          setState(() {
+                            board.makeAMoveAt(i);
+                          });
+                        },
+                        child: Image(
+                          image: this.getImage(board.boardState[i]),
+                        ),
                       ),
                     ),
                   ),
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             padding: EdgeInsets.all(20.0),
             child: MaterialButton(
-              color: Color(0xFF0A3D62),
+              color: Colors.blueGrey,
               minWidth: 300.0,
               height: 50.0,
               child: Text(
