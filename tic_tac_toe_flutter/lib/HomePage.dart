@@ -130,6 +130,16 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
+            padding: _homePageStandartInset,
+            child: Text(
+              board.gameStatusMessage,
+              style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
             margin: _homePageStandartInset,
             child: Opacity(
               opacity: hasPlayerSelectedIcon ? 0.0 : 1.0,
@@ -155,16 +165,6 @@ class _HomePageState extends State<HomePage> {
                         Colors.blueAccent, circle, Board.circleState),
                   ],
                 ),
-              ),
-            ),
-          ),
-          Container(
-            padding: _homePageStandartInset,
-            child: Text(
-              board.gameStatusMessage,
-              style: TextStyle(
-                fontSize: 25.0,
-                fontWeight: FontWeight.bold,
               ),
             ),
           ),
